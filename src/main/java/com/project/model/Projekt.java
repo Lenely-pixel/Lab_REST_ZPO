@@ -31,8 +31,64 @@ public class Projekt {
     @Column(nullable = false, length = 50)
     private String nazwa;
 
+    public String getNazwa() {
+        return nazwa;
+    }
+
     @Column(length = 200)
     private String opis;
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setOpis(String opis) {
+        this.opis = opis;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public void setLastModifiedDate(LocalDateTime lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public void setDataOddania(LocalDate dataOddania) {
+        this.dataOddania = dataOddania;
+    }
+
+    public void setNazwa(String nazwa) {
+        this.nazwa = nazwa;
+    }
+
+    public void setStudenci(List<Student> studenci) {
+        this.studenci = studenci;
+    }
+
+    public void setZadania(List<Zadanie> zadania) {
+        this.zadania = zadania;
+    }
+
+    public LocalDateTime getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public List<Zadanie> getZadania() {
+        return zadania;
+    }
+
+    public List<Student> getStudenci() {
+        return studenci;
+    }
+
+    public String getOpis() {
+        return opis;
+    }
+
+    public LocalDate getDataOddania() {
+        return dataOddania;
+    }
 
     private LocalDate dataOddania;
 

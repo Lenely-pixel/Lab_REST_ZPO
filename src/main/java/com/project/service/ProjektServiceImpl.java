@@ -8,11 +8,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import java.util.Optional;
 
 @Service
 public class ProjektServiceImpl implements ProjektService {
+
+    private static final Logger logger = LoggerFactory.getLogger(ProjektServiceImpl.class);
 
     private final ProjektRepository projektRepository;
     private final ZadanieRepository zadanieRepository;
