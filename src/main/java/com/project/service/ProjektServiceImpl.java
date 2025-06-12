@@ -2,30 +2,21 @@ package com.project.service;
 
 import com.project.model.Projekt;
 import com.project.repository.ProjektRepository;
-import com.project.repository.ZadanieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 
 import java.util.Optional;
 
 @Service
 public class ProjektServiceImpl implements ProjektService {
 
-    private static final Logger logger = LoggerFactory.getLogger(ProjektServiceImpl.class);
-
     private final ProjektRepository projektRepository;
-    private final ZadanieRepository zadanieRepository;
 
     @Autowired
-    public ProjektServiceImpl(ProjektRepository projektRepository, ZadanieRepository zadanieRepository) {
+    public ProjektServiceImpl(ProjektRepository projektRepository) {
         this.projektRepository = projektRepository;
-        this.zadanieRepository = zadanieRepository;
     }
 
     @Override
@@ -39,7 +30,6 @@ public class ProjektServiceImpl implements ProjektService {
     }
 
     @Override
-    @Transactional
     public void deleteProjekt(Integer projektId) {
         projektRepository.deleteById(projektId);
     }
@@ -51,7 +41,7 @@ public class ProjektServiceImpl implements ProjektService {
 
     @Override
     public Page<Projekt> searchByNazwa(String nazwa, Pageable pageable) {
-        return projektRepository.findAll(pageable); // мы ещё не добавили кастомный метод поиска
+        return projektRepository.findByNazwaContainingIgnoreCase(nazwa, pageable);
     }
 }
 

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista studentów</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+<h1>Lista studentów</h1>
+
+<a th:href="@{/studenty/new}">➕ Dodaj studenta</a>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>Nr Indeksu</th>
+        <th>Email</th>
+        <th>Stacjonarny?</th>
+        <th>Akcje</th>
+    </tr>
+    <tr th:each="student : ${studenty}">
+        <td th:text="${student.studentId}"></td>
+        <td th:text="${student.imie}"></td>
+        <td th:text="${student.nazwisko}"></td>
+        <td th:text="${student.nrIndeksu}"></td>
+        <td th:text="${student.email}"></td>
+        <td th:text="${student.stacjonarny} ? 'Tak' : 'Nie'"></td>
+        <td>
+            <a th:href="@{/studenty/edit/{id}(id=${student.studentId})}">✏️ Edytuj</a>
+            |
+            <a th:href="@{/studenty/delete/{id}(id=${student.studentId})}" onclick="return confirm('Czy na pewno chcesz usunąć?')">🗑 Usuń</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

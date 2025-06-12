@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formularz studenta</title>
+</head>
+<body>
+<h1 th:text="${student.studentId == null} ? 'Dodaj studenta' : 'Edytuj studenta'"></h1>
+
+<form th:action="@{/studenty/save}" th:object="${student}" method="post">
+    <input type="hidden" th:field="*{studentId}"/>
+
+    <label for="imie">Imię:</label>
+    <input type="text" id="imie" th:field="*{imie}" required/>
+    <br/>
+
+    <label for="nazwisko">Nazwisko:</label>
+    <input type="text" id="nazwisko" th:field="*{nazwisko}" required/>
+    <br/>
+
+    <label for="nrIndeksu">Numer indeksu:</label>
+    <input type="text" id="nrIndeksu" th:field="*{nrIndeksu}" required/>
+    <br/>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" th:field="*{email}"/>
+    <br/>
+
+    <label for="stacjonarny">Stacjonarny:</label>
+    <input type="checkbox" id="stacjonarny" th:field="*{stacjonarny}"/>
+    <br/><br/>
+
+    <button type="submit">Zapisz</button>
+</form>
+
+<br/>
+<a th:href="@{/studenty}">← Powrót do listy studentów</a>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edytuj projekt</title>
+</head>
+<body>
+<h2>Edytuj projekt</h2>
+<form th:action="@{/projekty}" method="post" th:object="${projekt}">
+    <input type="hidden" th:field="*{projektId}" />
+    <label>Nazwa:</label>
+    <input type="text" th:field="*{nazwa}" />
+    <label>Opis:</label>
+    <input type="text" th:field="*{opis}" />
+    <button type="submit">Zapisz</button>
+</form>
+</body>
+</html>

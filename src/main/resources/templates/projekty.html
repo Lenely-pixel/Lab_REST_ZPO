@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista projektów</title>
+</head>
+<body>
+<h1>Lista projektów</h1>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Nazwa</th>
+        <th>Opis</th>
+        <th>Akcje</th>
+    </tr>
+    <tr th:each="projekt : ${projekty}">
+        <td th:text="${projekt.projektId}">1</td>
+        <td th:text="${projekt.nazwa}">Nazwa</td>
+        <td th:text="${projekt.opis}">Opis</td>
+        <td>
+            <form th:action="@{'/projekty/edit/' + ${projekt.projektId}}" method="get" style="display:inline">
+                <button type="submit">Edytuj</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<h2>Dodaj nowy projekt</h2>
+<form th:action="@{/projekty}" method="post">
+    <label>Nazwa: <input type="text" name="nazwa"/></label><br>
+    <label>Opis: <input type="text" name="opis"/></label><br>
+    <label>Data oddania: <input type="date" name="dataOddania"/></label><br>
+    <button type="submit">Zapisz</button>
+</form>
+</body>
+</html>
+
